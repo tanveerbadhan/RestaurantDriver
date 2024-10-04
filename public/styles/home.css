@@ -14,7 +14,6 @@ body {
 .formWpr {
     display: flex;
     flex-direction: row;
-    align-items: center;
     gap: 20px;
 }
 
@@ -23,4 +22,15 @@ form {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    height: 100%;
+}
+
+.inputWpr {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.error {
+    margin-left: 12px;
 }

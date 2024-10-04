@@ -11,25 +11,35 @@
         <h1 class="title">Driver Delivery Portal</h1>
         <div class="formWpr">
             <section class="login">
-                <form>
+                <form method="POST" action="/login">
                     <h3>Login In</h3>
-                    <input
-                        type="email"
-                        class="email"
-                        placeholder="Enter Your Email"
-                        required
-                    />
-                    <input
-                        type="password"
-                        class="password"
-                        placeholder="Enter Your password"
-                        required
-                    />
+                    <div class="inputWpr">
+                        <input
+                            type="email"
+                            class="email"
+                            placeholder="Enter Your Email"
+                            required
+                        />
+                        <% if(usernameError) { %>
+                        <p class="error">Username does not exist</p>
+                        <% } %>
+                    </div>
+                    <div class="inputWpr">
+                        <input
+                            type="password"
+                            class="password"
+                            placeholder="Enter Your password"
+                            required
+                        />
+                        <% if(passwordError) { %>
+                        <p class="error">Enter Correct Password</p>
+                        <% } %>
+                    </div>
                     <button class="button">Log In</button>
                 </form>
             </section>
             <section class="signUp">
-                <form>
+                <form method="POST" action="/signup">
                     <h3>Create Your Account</h3>
                     <input
                         type="email"
@@ -41,6 +51,12 @@
                         type="password"
                         class="password"
                         placeholder="Enter Your password"
+                        required
+                    />
+                    <input
+                        type="password"
+                        class="password"
+                        placeholder="Confirm Your password"
                         required
                     />
                     <button class="button">Sign Up</button>

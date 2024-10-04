@@ -25,6 +25,12 @@ h3 {
     line-height: 22px;
 }
 
+.error {
+    color: red;
+    font-size: 12px;
+    line-height: 14px;
+}
+
 input {
     height: 40px;
     border-radius: 16px;

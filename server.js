@@ -8,7 +8,26 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-    return res.render("home");
+    const sendErrorData = {
+        usernameError: false,
+        passwordError: false,
+    };
+    return res.render("home", sendErrorData);
+});
+
+app.post("/login", async (req, res) => {
+    const sendErrorData = {
+        usernameError: true,
+        passwordError: false,
+    };
+    try {
+        return res.render("home", {
+            usernameError: true,
+            passwordError: false,
+        });
+    } catch (error) {
+        return res.send(error.message);
+    }
 });
 
 const initServer = async () => {
