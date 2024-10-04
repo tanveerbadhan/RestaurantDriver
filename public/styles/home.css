@@ -1,0 +1,26 @@
+body {
+    height: 100vh;
+    width: 100wh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title {
+    margin-bottom: 80px;
+}
+
+.formWpr {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}

@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: Lato;
+    outline: none;
+}
+
+h1 {
+    font-size: 40px;
+    line-height: 42px;
+}
+
+h2 {
+    font-size: 30px;
+    line-height: 32px;
+}
+
+h3 {
+    font-size: 20px;
+    line-height: 22px;
+}
+
+input {
+    height: 40px;
+    border-radius: 16px;
+    border: 1px solid #d8d8d8;
+    width: 300px;
+    padding: 16px;
+}
+
+button {
+    height: 40px;
+    width: 100%;
+    background: #008cff;
+    border: none;
+    border-radius: 16px;
+    color: #fff;
+    cursor: pointer;
+}
