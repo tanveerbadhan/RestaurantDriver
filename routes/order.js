@@ -14,7 +14,7 @@ const checkIfUserIsLoggedIn = (req, res, next) => {
 router.get("/orderlist", checkIfUserIsLoggedIn, async (req, res) => {
     try {
         const orderList = await Order.find();
-        return res.render("openOrders", { orderList });
+        return res.render("openOrders", { orderList, name: req.session.loggedInUser });
     } catch (error) {
         return res.send(error.message);
     }

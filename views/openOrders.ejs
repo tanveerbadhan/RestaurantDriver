@@ -8,19 +8,55 @@
         <title>Document</title>
     </head>
     <body>
-        <h1>Open Orders</h1>
+        <header>
+            <%- include('./partials/menu', {name}); %>
+            <div>
+                <h2>Open Orders</h2>
+                <h2>Orders Selected For Delivery</h2>
+            </div>
+        </header>
         <div class="wrapper">
-            <div class="orderList">
-                <h2>Orders</h2>
-                <ul>
+            <div class="orderListWpr">
+                <ul class="orderList">
                     <% for(let i = 0; i < orderList.length; i++) { %>
-                    <li>
-                        <p>Order Id: <%=orderList[i]._id %></p>
+                    <li class="order">
+                        <h3><%=orderList[i].customerName %></h3>
+                        <p><b>Order Id</b>: <%=orderList[i]._id %></p>
+                        <p><b>Delivery Address</b>: <%=orderList[i].deliveryAddress %></p>
+                        <div class="orderItems">
+                            <p><b>Order Items</b>:&nbsp;</p>
+                            <ul>
+                                <li><p><%= orderList[i].itemsOrdered.join(', ') %></p></li>
+                            </ul>
+                        </div>
+                        <p class="status">
+                            <b>Status</b>: <%=orderList[i].status.replaceAll('_',' ').toLowerCase()
+                            %>
+                        </p>
                     </li>
                     <% } %>
                 </ul>
             </div>
-            <div class="selectedOrders"></div>
+            <div class="selectedOrders">
+                <ul>
+                    <li>
+                        <h4 class="name">Tanveer</h4>
+                        <div>
+                            <p class="address"><b>Address</b>: abcd 123 avenue</p>
+                            <p class="orderId"><b>Order Id</b>: jsdnlfslkdfmsdkfmslkmsdfklm</p>
+                        </div>
+                    </li>
+                    <li>
+                        <h4 class="name">Tanveer</h4>
+                        <div>
+                            <p class="address"><b>Address</b>: abcd 123 avenue</p>
+                            <p class="orderId"><b>Order Id</b>: jsdnlfslkdfmsdkfmslkmsdfklm</p>
+                        </div>
+                    </li>
+                </ul>
+                <button class="deliverBtn">Proceed To Deliver</button>
+            </div>
         </div>
+        <script src="/js/menu.js"></script>
     </body>
 </html>
