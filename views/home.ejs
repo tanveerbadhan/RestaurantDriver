@@ -44,6 +44,38 @@
             <section class="signUp">
                 <form method="POST" action="/signup">
                     <h3>Create Your Account</h3>
+                    <input
+                        type="text"
+                        class="fullName"
+                        name="fullName"
+                        placeholder="Enter Your Full Name"
+                        required
+                        value="<%=fullName %>"
+                    />
+                    <input
+                        type="text"
+                        class="vehicleModel"
+                        name="vehicleModel"
+                        placeholder="Enter Your Vehicle Model"
+                        required
+                        value="<%=vehicleModel %>"
+                    />
+                    <input
+                        type="text"
+                        class="color"
+                        name="color"
+                        placeholder="Enter Your Vehicle Color"
+                        required
+                        value="<%=color %>"
+                    />
+                    <input
+                        type="text"
+                        class="licensePlate"
+                        name="licensePlate"
+                        placeholder="Enter Your License Plate"
+                        required
+                        value="<%=licensePlate %>"
+                    />
                     <div class="inputWpr">
                         <input
                             type="email"

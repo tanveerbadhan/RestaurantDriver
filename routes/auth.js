@@ -13,6 +13,10 @@ router.get("/", (req, res) => {
         passwordError: false,
         createUsernameError: false,
         confimPasswordError: false,
+        fullName: "",
+        vehicleModel: "",
+        color: "",
+        licensePlate: "",
     };
     return res.render("home", sendData);
 });
@@ -28,6 +32,10 @@ router.post("/login", async (req, res) => {
         passwordError: false,
         createUsernameError: false,
         confimPasswordError: false,
+        fullName: "",
+        vehicleModel: "",
+        color: "",
+        licensePlate: "",
     };
 
     const driver = await Driver.find({ email });
@@ -57,6 +65,10 @@ router.post("/signup", async (req, res) => {
     const password = req.body.signUpPassword;
     const confirmPassword = req.body.signUpPasswordConfirm;
     const signUpEmail = req.body.signUpEmail;
+    const fullName = req.body.fullName;
+    const vehicleModel = req.body.vehicleModel;
+    const color = req.body.color;
+    const licensePlate = req.body.licensePlate;
     const sendData = {
         email,
         signUpEmail,
@@ -64,6 +76,10 @@ router.post("/signup", async (req, res) => {
         passwordError: false,
         createUsernameError: false,
         confimPasswordError: false,
+        fullName,
+        vehicleModel,
+        color,
+        licensePlate,
     };
 
     try {
@@ -81,6 +97,10 @@ router.post("/signup", async (req, res) => {
         }
 
         const newDriver = new Driver({
+            fullName,
+            vehicleModel,
+            color,
+            licensePlate,
             email: signUpEmail,
             password,
         });
