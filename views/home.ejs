@@ -20,6 +20,7 @@
                             name="loginEmail"
                             placeholder="Enter Your Email"
                             required
+                            value="<%=email %>"
                         />
                         <% if(usernameError) { %>
                         <p class="error">Username does not exist</p>
@@ -43,13 +44,19 @@
             <section class="signUp">
                 <form method="POST" action="/signup">
                     <h3>Create Your Account</h3>
-                    <input
-                        type="email"
-                        class="email"
-                        name="signUpEmail"
-                        placeholder="Enter Your Email"
-                        required
-                    />
+                    <div class="inputWpr">
+                        <input
+                            type="email"
+                            class="email"
+                            name="signUpEmail"
+                            placeholder="Enter Your Email"
+                            required
+                            value="<%=signUpEmail %>"
+                        />
+                        <% if(createUsernameError) { %>
+                        <p class="error">Email already exist</p>
+                        <% } %>
+                    </div>
                     <input
                         type="password"
                         class="password"

@@ -11,72 +11,88 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-    const sendErrorData = {
+    const email = "";
+    const signUpEmail = "";
+    const sendData = {
+        email,
+        signUpEmail,
         usernameError: false,
         passwordError: false,
+        createUsernameError: false,
         confimPasswordError: false,
     };
-    return res.render("home", sendErrorData);
+    return res.render("home", sendData);
 });
 
 app.post("/login", async (req, res) => {
-    const sendErrorData = {
-        usernameError: true,
-        passwordError: false,
-        confimPasswordError: false,
-    };
     const email = req.body.loginEmail;
     const password = req.body.loginPassword;
+    const signUpEmail = req.body.signUpEmail;
+    const sendData = {
+        email,
+        signUpEmail,
+        usernameError: false,
+        passwordError: false,
+        createUsernameError: false,
+        confimPasswordError: false,
+    };
 
     const driver = await Driver.find({ email });
 
     if (driver.length === 0) {
-        return res.render("home", sendErrorData);
+        sendData.usernameError = true;
+        return res.render("home", sendData);
     }
 
     const driverWithPass = await Driver.find({ email, password });
 
     if (driverWithPass.length === 0) {
-        sendErrorData.usernameError = false;
-        sendErrorData.passwordError = true;
-        return res.render("home", sendErrorData);
+        sendData.usernameError = false;
+        sendData.passwordError = true;
+        return res.render("home", sendData);
     }
 
-    sendErrorData.usernameError = false;
-    sendErrorData.passwordError = false;
-
     try {
-        return res.render("home", sendErrorData);
+        return res.render("home", sendData);
     } catch (error) {
         return res.send(error.message);
     }
 });
 
 app.post("/signup", async (req, res) => {
-    const sendErrorData = {
+    const email = req.body.loginEmail;
+    const password = req.body.signUpPassword;
+    const confirmPassword = req.body.signUpPasswordConfirm;
+    const signUpEmail = req.body.signUpEmail;
+    const sendData = {
+        email,
+        signUpEmail,
         usernameError: false,
-        confimPasswordError: false,
+        passwordError: false,
+        createUsernameError: false,
         confimPasswordError: false,
     };
 
-    const email = req.body.signUpEmail;
-    const password = req.body.signUpPassword;
-    const confirmPassword = req.body.signUpPasswordConfirm;
-
-    if (password !== confirmPassword) {
-        sendErrorData.confimPasswordError = true;
-        return res.render("home", sendErrorData);
-    }
-
-    sendErrorData.confimPasswordError = false;
-
     try {
+        const driver = await Driver.find({ email: signUpEmail });
+
+        if (driver.length) {
+            sendData.createUsernameError = true;
+            return res.render("home", sendData);
+        }
+
+        if (password !== confirmPassword) {
+            sendData.createUsernameError = false;
+            sendData.confimPasswordError = true;
+            return res.render("home", sendData);
+        }
+
         const newDriver = new Driver({
-            email,
+            email: signUpEmail,
             password,
         });
         await newDriver.save();
-        return res.render("home", sendErrorData);
+        return res.render("home", sendData, email);
     } catch (error) {
         return res.send(error.message);
     }
