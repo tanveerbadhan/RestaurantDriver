@@ -54,7 +54,9 @@ router.post("/login", async (req, res) => {
     }
 
     try {
-        return res.render("home", sendData);
+        const fullName = driverWithPass[0].fullName;
+        req.session.loggedInUser = fullName;
+        return res.redirect("/orderlist");
     } catch (error) {
         return res.send(error.message);
     }
@@ -104,11 +106,18 @@ router.post("/signup", async (req, res) => {
             email: signUpEmail,
             password,
         });
+        req.session.loggedInUser = fullName;
         await newDriver.save();
-        return res.render("home", sendData, email);
+        return res.render("home", sendData);
     } catch (error) {
         return res.send(error.message);
     }
+});
+
+router.get("/logout", (req, res) => {
+    req.session.destroy();
+    console.log("LOGGED OUT!!! Redirecting you back to the / endpoint");
+    return res.redirect("/");
 });
 
 module.exports = router;

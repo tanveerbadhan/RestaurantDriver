@@ -10,6 +10,16 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+// setup sessions
+const session = require("express-session");
+app.use(
+    session({
+        secret: "the quick brown fox jumped over the lazy dog 1234567890", // random string, used for configuring the session
+        resave: false,
+        saveUninitialized: true,
+    })
+);
+
 app.use("/", auth);
 app.use("/", order);
 

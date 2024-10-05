@@ -3,10 +3,18 @@ const router = express.Router();
 
 const Order = require("../models/order");
 
-router.get("/orderlist", async (req, res) => {
+const checkIfUserIsLoggedIn = (req, res, next) => {
+    if (req.session.hasOwnProperty("loggedInUser") === true) {
+        next();
+    } else {
+        return res.redirect("/");
+    }
+};
+
+router.get("/orderlist", checkIfUserIsLoggedIn, async (req, res) => {
     try {
-        const orderlist = await Order.find();
-        return res.send(JSON.stringify(orderlist));
+        const orderList = await Order.find();
+        return res.render("openOrders", { orderList });
     } catch (error) {
         return res.send(error.message);
     }
