@@ -29,3 +29,33 @@ const handleSelectedOrders = () => {
         }
     }
 };
+
+const deliverBtn = document.querySelector(".deliverBtn");
+
+const handleAddToDelivery = async () => {
+    const ids = [];
+    for (let order of orderList) {
+        const checkbox = order.querySelector("input");
+        const orderId = order.querySelector(".orderId").innerHTML;
+        const id = orderId.split(":")[1].trim();
+        if (checkbox.checked) {
+            ids.push(id);
+        }
+    }
+
+    try {
+        const endpoint = "/addtodelivery";
+        const fullUrl = window.location.origin + endpoint;
+        await fetch(fullUrl, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(ids),
+        });
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+
+deliverBtn.addEventListener("click", handleAddToDelivery);

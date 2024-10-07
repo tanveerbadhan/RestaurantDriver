@@ -20,4 +20,14 @@ router.get("/orderlist", checkIfUserIsLoggedIn, async (req, res) => {
     }
 });
 
+router.put("/addtodelivery", checkIfUserIsLoggedIn, async (req, res) => {
+    const ids = req.body ?? [];
+    try {
+        const result = await Order.updateMany({ _id: { $in: ids } }, { status: "IN_TRANSIT" }, { runValidators: true });
+        console.log("Update result:", result);
+    } catch (error) {
+        return res.send(error.message);
+    }
+});
+
 module.exports = router;
