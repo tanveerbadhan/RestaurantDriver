@@ -35,3 +35,7 @@ form {
 .error {
     margin-left: 12px;
 }
+
+.button {
+    width: 100%;
+}
