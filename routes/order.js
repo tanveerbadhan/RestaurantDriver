@@ -72,7 +72,7 @@ router.post("/uploadimg", upload.single("image"), async (req, res, next) => {
     };
     try {
         await Order.updateOne({ _id }, { image }, { runValidators: true });
-        return res.send("delivery");
+        return res.redirect("delivery");
     } catch (error) {
         return res.send(error.message);
     }
