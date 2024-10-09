@@ -4,21 +4,21 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/styles/common.css" />
-        <link rel="stylesheet" href="/styles/openOrders.css" />
-        <title>Document</title>
+        <link rel="stylesheet" href="/styles/delivery.css" />
+        <title>Delivery Portal</title>
     </head>
     <body>
         <header>
-            <%- include('./partials/menu', {name, onDeliveryScreen: false}); %>
+            <%- include('./partials/menu', {name, onDeliveryScreen: true}); %>
             <div>
-                <h2>Ready For Delivery</h2>
-                <h2>Orders Selected For Delivery</h2>
+                <h2>In Transit</h2>
+                <h2>Delivered</h2>
             </div>
         </header>
         <div class="wrapper">
             <div class="orderListWpr">
                 <% if(orderList.length === 0) { %>
-                <p class="noOpenOrders">Currently there are no open orders</p>
+                <p class="noOpenOrders">Currently there are no orders in Transit</p>
                 <% } %>
                 <ul class="orderList">
                     <% for(let i = 0; i < orderList.length; i++) { %>
@@ -36,18 +36,28 @@
                                 </div>
                                 <p class="status"><b>Status</b>: <%=orderList[i].status.replaceAll('_',' ').toLowerCase() %></p>
                             </div>
-                            <input type="checkbox" />
+                            <input type="radio" />
                         </a>
                     </li>
                     <% } %>
                 </ul>
             </div>
-            <div class="selectedOrders">
-                <ul class="selectedOrderList"></ul>
-                <button class="deliverBtn">Proceed To Deliver</button>
+            <div class="deliveredOrders">
+                <ul class="deliveredOrderList">
+                    <% for(let i = 0; i < deliveredList.length; i++) { %>
+                    <li>
+                        <h4 class="name"><%=deliveredList[i].customerName %></h4>
+                        <div>
+                            <p class="orderId"><b>Order Id</b>: <%=deliveredList[i]._id %></p>
+                            <p class="address"><b>Delivery Address</b>: <%=deliveredList[i].deliveryAddress %></p>
+                        </div>
+                    </li>
+                    <% } %>
+                </ul>
+                <button class="deliverBtn">Deliver</button>
             </div>
         </div>
         <script src="/js/menu.js"></script>
-        <script src="/js/order.js"></script>
+        <script src="/js/delivery.js"></script>
     </body>
 </html>

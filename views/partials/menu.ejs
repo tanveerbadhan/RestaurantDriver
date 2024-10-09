@@ -1,4 +1,9 @@
 <div class="menu">
     <p>Welcome <%= name %></p>
-    <button class="logoutBtn">Logout</button>
+    <div class="menuButtonWpr">
+        <% if(!onDeliveryScreen) { %>
+        <a href="/delivery" class="showDeliveredBtn">Show Delivery Status</a>
+        <% } %>
+        <button class="logoutBtn">Logout</button>
+    </div>
 </div>
