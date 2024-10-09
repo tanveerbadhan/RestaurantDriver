@@ -108,6 +108,14 @@ body header div {
     background: #d9ecfa;
     border-radius: 16px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.selectedOrders li div {
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
 }
 
 .deliverBtn {

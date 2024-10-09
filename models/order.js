@@ -26,6 +26,10 @@ const orderSchema = mongoose.Schema(
             required: true,
             default: "READY_FOR_DELIVERY",
         },
+        image: {
+            data: Buffer,
+            contentType: String,
+        },
     },
     { timestamps: true }
 );

@@ -37,13 +37,16 @@ const handleDelivery = async () => {
     try {
         const endpoint = "/deliver";
         const fullUrl = window.location.origin + endpoint;
-        await fetch(fullUrl, {
+        const response = await fetch(fullUrl, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ deliverId }),
         });
+        if (response.status === 200) {
+            location.reload();
+        }
     } catch (error) {
         console.log(error.message);
     }
