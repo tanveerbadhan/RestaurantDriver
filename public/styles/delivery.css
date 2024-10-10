@@ -122,14 +122,30 @@ body header div {
     padding: 0px 20px;
 }
 
+.deliveredOrders li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-direction: row;
+}
+
 .deliveredOrders li form {
     display: flex;
     gap: 8px;
 }
 
+
 .deliveredOrders li form input {
     flex: 1;
     padding: 8px;
+}
+
+.deliveredOrders li img {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-left: auto;
 }
 
 .deliverBtn {

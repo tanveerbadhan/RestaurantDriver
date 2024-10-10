@@ -46,19 +46,22 @@
                 <ul class="deliveredOrderList">
                     <% for(let i = 0; i < deliveredList.length; i++) { %>
                     <li>
-                        <h4 class="name"><%=deliveredList[i].customerName %></h4>
-                        <div>
-                            <p class="orderId"><b>Order Id</b>: <%=deliveredList[i]._id %></p>
-                            <p class="address"><b>Delivery Address</b>: <%=deliveredList[i].deliveryAddress %></p>
+                        <div class="content">
+                            <h4 class="name"><%=deliveredList[i].customerName %></h4>
+                            <div>
+                                <p class="orderId"><b>Order Id</b>: <%=deliveredList[i]._id %></p>
+                                <p class="address"><b>Delivery Address</b>: <%=deliveredList[i].deliveryAddress %></p>
+                            </div>
+                            <% if(!deliveredList[i].image.data) { %>
+                            <form action="/uploadimg" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" value="<%=deliveredList[i]._id%>" name="_id" />
+                                <input type="file" id="image" name="image" value="" required />
+                                <button type="submit" class="uploadBtn">Upload Image</button>
+                            </form>
+                            <% } %>
                         </div>
-                        <% if(!deliveredList[i].image.data) { %>
-                        <form action="/uploadimg" method="POST" enctype="multipart/form-data">
-                            <input type="hidden" value="<%=deliveredList[i]._id%>" name="_id" />
-                            <input type="file" id="image" name="image" value="" required />
-                            <button type="submit" class="uploadBtn">Upload Image</button>
-                        </form>
-                        <% } else { %>
-                        <p style="text-align: right">Image is already uploaded</p>
+                        <% if(deliveredList[i].image.data) { %>
+                        <img src="data:image/png;base64, <%= deliveredList[i].image.data.toString('base64') %>" alt="Order Id: <%= deliveredList[i]._id%> Image" />
                         <% } %>
                     </li>
                     <% } %>
