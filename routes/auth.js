@@ -108,7 +108,7 @@ router.post("/signup", async (req, res) => {
         });
         req.session.loggedInUser = fullName;
         await newDriver.save();
-        return res.render("home", sendData);
+        return res.redirect("/orderlist");
     } catch (error) {
         return res.send(error.message);
     }
