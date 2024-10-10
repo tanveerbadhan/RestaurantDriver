@@ -44,7 +44,7 @@ router.put("/addtodelivery", checkIfUserIsLoggedIn, async (req, res) => {
     }
 });
 
-router.get("/delivery", async (req, res) => {
+router.get("/delivery", checkIfUserIsLoggedIn, async (req, res) => {
     try {
         const orderList = await Order.find({ status: "IN_TRANSIT" });
         const deliveredList = await Order.find({ status: "DELIVERED" });
@@ -64,7 +64,7 @@ router.put("/deliver", checkIfUserIsLoggedIn, async (req, res) => {
     }
 });
 
-router.post("/uploadimg", upload.single("image"), async (req, res, next) => {
+router.post("/uploadimg", checkIfUserIsLoggedIn, upload.single("image"), async (req, res, next) => {
     const _id = req.body._id;
     let image = {
         data: fs.readFileSync(path.join(__dirname, "..", "uploads/", req.file.filename)),
